@@ -1,0 +1,12 @@
+admin
+
+adminnavi-page.php  => index.php
+
+addquiz-page.php => addquiz.php
+
+awsremovequiz-page.php => removequiz.php
+
+leaderboard-page.php =>leaderboard.php
+
+user-page.php => users.php
+

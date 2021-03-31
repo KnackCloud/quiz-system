@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Lato";
+  background-color:#66ffff ;
+
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #1ABC9C;
+
+}
+
+.quiz {
+  display: grid;
+  grid-template-rows: 60px auto;
+  width: 300px;
+  height:300px;
+  background-color: #fff;
+  box-shadow: 0 0 5px #33ffff,
+               0 0 10px #66ffff;
+  border-radius: 4px;
+  align-items: center;
+  font-family: "Lato";
+  margin-left: 40px;
+
+
+}
+.welcome_text {
+  width: 120px;
+}
+
+
+
+.welcome_form button {
+  width: 100%;
+  margin-left:90px;
+   margin-right:90px;
+
+  
+}
+
+
+
+.welcome_form button {
+  padding: 15px 0;
+  border: none;
+  border-radius: 120px;
+  background-color:black;
+  color: white;
+  font-size: 15px;
+  transition: 0.4s all;
+}
+
+.welcome_form button:hover {
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  cursor: pointer;
+  color:#1ABC9C
+}
+
+#cert,#no,#duration{
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color:black;
+  text-align: center;
+  font-size:20px;
+  line-height:30px;
+}
+
+ .a{
+     line-height: 12px;
+     width: 150px;
+     font-size: 15px;
+     font-family: "Lato";
+     margin-top: 40px;
+     margin-right: 100px;
+     position:absolute;
+     top:10px;
+     right:5px;
+     color:white;
+     border: none;
+    padding: 15px 50px;
+    background-color:black;
+    border-radius: 27px;
+    
+ }
+ .a:hover{
+  color:cyan;
+ }
+ 

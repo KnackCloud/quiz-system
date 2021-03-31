@@ -1,0 +1,127 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+*
+{
+	margin:0;
+	box-sizing: border-box;
+	padding:0;
+}
+body
+{
+	font-family: sans-serif;
+	background-color: #1ABC9C;
+
+}
+
+.heading
+{
+  font-size: 25px;
+  margin-left: 60px;
+  font-weight: 500;
+  margin-bottom: 40px;
+  color: #FFFFFF;
+  margin-top: 30px;
+}
+.h
+{
+  font-size: 25px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 40px;
+  color: #FFFFFF;
+  margin-top: 30px;
+}
+.table-container
+{
+	padding:0 10%;
+	margin:40px auto 0;
+	transition:0.1s;
+	border-radius: 5px;
+    align-self: center;
+}
+.table1
+{
+	width: 80%;
+    border-collapse: collapse;
+    margin-left: 60px;
+    margin-bottom: 50px;
+
+}
+.tablerem
+{
+	width: 110%;
+    border-collapse: collapse;
+    margin-left: -50px;
+    margin-bottom: 50px;
+
+}
+
+.table2
+{
+	width: 80%;
+	border-collapse: collapse;
+        margin-left: 60px;
+        margin-bottom: 50px;
+
+}
+ thead{
+	background-color: #FFFFFF;
+}
+ thead tr th
+{
+	font-size: 14px;
+	font-weight:600;
+	letter-spacing:0.35px;
+	opacity:1;
+	padding:12px;
+	vertical-align:top;
+	border: 1px solid #dee2e685;
+}
+ tbody tr td
+{
+	font-size: 14px;
+	letter-spacing: 0.35px;
+	background-color: #FFFFFF;
+    padding:8px;
+    color:black;
+    text-align: center;
+    border:1px solid #dee2e685;
+}
+ tbody tr td .btn
+{
+	width:100px;
+	text-decoration: none;
+	line-height:35px;
+	display:inline-block;
+    border-radius: 10px;
+    box-shadow:  0 0 5px #33ffff,
+               0 0 10px #66ffff;
+	color: #FFffff;
+	text-align:center;
+	background-color:black;
+	vertical-align: middle;
+	user-select:none;
+	opacity:1;
+	font-size:14px;
+}
+
+.btn {
+  background-color:black;
+  border: none;
+  color: black;
+  padding: 2px 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#q
+{
+	width:400px;
+	
+}
+#a
+{
+	width:180px;
+}
+
+
+

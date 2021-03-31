@@ -1,0 +1,51 @@
+body
+{
+  background-color: #1ABC9C;
+}
+
+.score{
+  width:300px;
+  height:300px;
+  padding:50px;
+  text-align: center;
+}
+.p{
+  font-family:'sans-serif';
+  margin-top:100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    line-height: 35px;
+}
+#Q{
+  font-size: 18px;
+}
+#ans{
+  font-weight:bold;
+  font-size: 17px;
+  color:black;
+}
+.opt{
+  padding-left: 50px;
+}
+#review
+{
+  width:350px;
+  height:40px;
+  font-family: "Lato";
+  background-color:black;
+  color:white;
+  font-size:20px; 
+  align-content: center;
+  margin-left:350px; 
+  margin-top:50px;
+}
+#review:hover {
+  cursor: pointer;
+  background-color:#1ABC9C;
+  color: White;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+}
+#hide
+{
+  display: none;
+}
