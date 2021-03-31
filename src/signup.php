@@ -1,12 +1,13 @@
 <?php include_once 'config/init.php'; ?>
 
-<?php 
-	use PHPMailer\PHPMailer\PHPMailer;
-				require_once 'PHPMailer-master/src/PHPMailer.php';
-				require_once 'PHPMailer-master/src/SMTP.php';
-				require_once 'PHPMailer-master/src/Exception.php';
-	
+<?php
 	$job = new Job;
+	$template = new Template('templates/signup-page.php');
+	require 'vendor/autoload.php';
+	use Aws\Ses\SesClient;
+	use Aws\Exception\AwsException;
+	
+	
 	if(isset($_POST['submit']))
 	{
 		$data = array();
@@ -40,69 +41,56 @@
 			{
 				
 
-			    $sender = 'udr.notification@gmail.com';
-				$senderName = 'UDR';
+			    $SesClient = new SesClient([
+                'version' => '2010-12-01',
+                'region'  => 'us-east-1'
+            ]);
 
-		// Replace recipient@example.com with a "To" address. If your account
-		// is still in the sandbox, this address must be verified.
-				$recipient = $data['email'];
+        
+$sender_email = 'udr.notification@gmail.com';
 
-		// Replace smtp_username with your Amazon SES SMTP user name.
-				$usernameSmtp = 'AKIA6Q7FZIZJZLYHIRXP';
+$recipient_emails = [strval($data['email'])];
 
-		// Replace smtp_password with your Amazon SES SMTP password.
-				$passwordSmtp = 'BLm7O9L66nR1Px547gPzfa7U4fsaqOtlj5ZievocYrK5';
 
-		// Specify a configuration set. If you do not want to use a configuration
-		// set, comment or remove the next line.
-		// $configurationSet = 'ConfigSet';
+$subject = 'Welcome to KnackCloud!';
+$plaintext_body = '' ;
+$html_body =  '<h1>Welcome to KnackCloud!</h1><p>please feel free to explore features of KnackCloud</p>';
+$char_set = 'UTF-8';
 
-		// If you're using Amazon SES in a region other than US West (Oregon),
-		// replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP
-		// endpoint in the appropriate region.
-				$host = 'email-smtp.us-east-1.amazonaws.com';
-				$port = 587;
+try {
+$result = $SesClient->sendEmail([
+'Destination' => [
+    'ToAddresses' => $recipient_emails,
+],
+'ReplyToAddresses' => [$sender_email],
+'Source' => $sender_email,
+'Message' => [
+  'Body' => [
+      'Html' => [
+          'Charset' => $char_set,
+          'Data' => $html_body,
+      ],
+      'Text' => [
+          'Charset' => $char_set,
+          'Data' => $plaintext_body,
+      ],
+  ],
+  'Subject' => [
+      'Charset' => $char_set,
+      'Data' => $subject,
+  ],
+],
 
-		// The subject line of the email
-				$subject = 'Welcome to UDR!';
-
-		// The plain-text body of the email
-				// $bodyText =  "Email Test\r\nThis email was sent through the Amazon SES SMTP interface using the PHPMailer class.";
-
-		// The HTML-formatted body of the email
-				$bodyHtml = '<h1>Welcome to UDR!</h1>
-		    <p>please feel free to explore features of UDR</p>';
-
-				$mail = new PHPMailer(true);
-
-				try {
-		    // Specify the SMTP settings.
-		    		$mail->isSMTP();
-		    		$mail->setFrom($sender, $senderName);
-		    		$mail->Username   = $usernameSmtp;
-		    		$mail->Password   = $passwordSmtp;
-		    		$mail->Host       = $host;
-		    		$mail->Port       = $port;
-		    		$mail->SMTPAuth   = true;
-		    		$mail->SMTPSecure = 'tls';
-		    // $mail->addCustomHeader('X-SES-CONFIGURATION-SET', $configurationSet);
-
-		    // Specify the message recipients.
-		    		$mail->addAddress($recipient);
-		    // You can also add CC, BCC, and additional To recipients here.
-
-		    // Specify the content of the message.
-		    		$mail->isHTML(true);
-		    		$mail->Subject    = $subject;
-		    		$mail->Body       = $bodyHtml;
-		    		// $mail->AltBody    = $bodyText;
-		    		$mail->Send();
-		    		echo "Email sent!" , PHP_EOL;
-				} catch (phpmailerException $e) {
-		    		echo "An error occurred. {$e->errorMessage()}", PHP_EOL; //Catch errors from PHPMailer.
-				} catch (Exception $e) {
-		    		echo "Email not sent. {$mail->ErrorInfo}", PHP_EOL; //Catch errors from Amazon SES.
-				}
+]);
+$messageId = $result['MessageId'];
+echo("Email sent! Message ID: $messageId"."\n");
+} catch (AwsException $e) {
+// output error message if fails
+echo $e->getMessage();
+echo("The email was not sent. Error message: ".$e->getAwsErrorMessage()."\n");
+echo "\n";
+}
+				
 				reDirect("index.php","Please log in to continue!","success");
 			}
 			else{
