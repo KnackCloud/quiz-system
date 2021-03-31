@@ -2,7 +2,7 @@ node{
       def dockerImageName= 'certification_udr_$JOB_NAME'
      
       stage('SCM Checkout'){
-         git 'https://github.com/KnackCloud/certification.git'
+         git 'https://github.com/KnackCloud/quiz-system.git'
       }
       stage('Build'){
          // Get maven home path and build
@@ -23,10 +23,12 @@ node{
       
     stage('Run Docker Image'){
           def dockerContainerName = 'javadedockerapp_$JOB_NAME_$BUILD_NUMBER'
-                      
-          def dockerRun= "sudo docker run -p 87:80 knackc123/${dockerImageName}" 
-            withCredentials([string(credentialsId: 'deploymentserverpwd', variable: 'dpPWD')]) {                  
-                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no root@52.66.110.193 ${dockerRun}"
+          def removeOldService = "sudo docker service rm qs"          
+          def dockerRun= "sudo docker service create --name qs --publish 81:80 knackc123/${dockerImageName}" 
+          
+            withCredentials([string(credentialsId: 'deploymentserverpwd', variable: 'dpPWD')]) {  
+                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no root@3.85.103.194 ${removeOldService}"
+                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no root@3.85.103.194 ${dockerRun}"
             }
             
       
@@ -37,3 +39,4 @@ node{
       
          
   }
+      
