@@ -34,7 +34,10 @@ node{
       
       }
       stage('Performance Test'){
-            
+           sh "sudo su"
+            sh "cd /home/ec2-user/jmeter/apache-jmeter-5.4.1/bin"
+            sh "sh /home/ec2-user/jmeter/apache-jmeter-5.4.1/bin/jmeter.sh -n -t /home/ec2-user/jmeter/apache-jmeter-5.4.1/bin/demo2quiz.jmx -l /home/ec2-user/jmeter/apache-jmeter-5.4.1/bin/report.jtl"
+             
       }
       
          
